@@ -12,7 +12,11 @@ Docker + Internet.
 
 `./run.sh dev` Spins up a container with vite+react-hmr.
 
-## `container.dev.env` - Configuration Flags
+## - configuration file
+
+`container.dev.env`
+
+### flags
 
 `DEVELOPMENT_PORT` ingress port. To keep consistency, this value will be propagated downstream for vite development server
 
