@@ -41,7 +41,7 @@ build_app () {
     commit_hash=$(git log -1 --format="%H")
     ymds=$(date +%Y%m%d%s)
     image_name="vms-frontend-build-${commit_hash}-${ymds}"
-    echo "[development] building container ${image_name}"
+    echo "[build_app] building container ${image_name}"
     docker build -f Dockerfile.build -t ${image_name} .
 
     if [[ "$(docker images -q ${image_name} 2> /dev/null)" == "" ]]
