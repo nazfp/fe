@@ -49,8 +49,10 @@ build_app () {
         echo "FAIL: [development] Image ${image_name} not found"
         exit 1;        
     else
-        echo "[development] Image ${image_name} found"
-        echo "[development] Running image ${image_name}"
+        echo "[build_app] Image ${image_name} found"
+        echo "[build_app] Running image ${image_name}"
+        echo "[build_app] $(pwd)"
+        echo "[build_app] $(pwd | ls)"
         docker run -v "$(pwd):/app" --rm ${image_name}
     fi
     exit 0;
