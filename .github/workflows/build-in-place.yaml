@@ -1,0 +1,14 @@
+name: In Place Build
+# Smoke test for deployment. Logs current github action repo commit hash into remote server.
+on: [push]
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checks out this branch
+        uses: actions/checkout@v3
+      - name: whichdocker
+        run: docker ps

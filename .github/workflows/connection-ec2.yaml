@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  deployment:
+  connection:
     strategy:
       matrix:
         os: [ubuntu-latest]

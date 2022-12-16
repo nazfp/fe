@@ -1,0 +1,4 @@
+FROM node:19-alpine3.16 as build
+WORKDIR /app
+
+CMD ["sh", "-c", "rm -rf node_modules && npm i && npm run build"]
