@@ -51,7 +51,7 @@ build_app () {
     else
         echo "[development] Image ${image_name} found"
         echo "[development] Running image ${image_name}"
-        docker run -it -v "$(pwd):/app" -e DEVELOPMENT_PORT="${DEVELOPMENT_PORT}" --rm -p "${DEVELOPMENT_PORT}":"${DEVELOPMENT_PORT}"/tcp ${image_name}
+        docker run -it -v "$(pwd):/app" --rm ${image_name}
     fi
     exit 0;
 
