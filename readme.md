@@ -1,4 +1,4 @@
-This is a sample of using Github Actions.
+This is a sample of using Github Actions inspired by my previous [project](https://github.com/noellimx/project-6-backend/tree/main/.github/workflows).
 
 The yamls run drivers (initial steps) which can be extended for CICD.
 
