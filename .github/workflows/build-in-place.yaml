@@ -11,4 +11,6 @@ jobs:
       - name: Checks out this branch
         uses: actions/checkout@v3
       - name: whichdocker
-        run: ./run.sh build
+        run: |
+          chmod u+x ./run.sh
+          ./run.sh build
