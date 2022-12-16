@@ -32,7 +32,7 @@ check_docker_exists () {
     fi
 }
 
-check_docker_exists
+
 
 
 build_app () {
