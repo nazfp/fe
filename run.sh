@@ -50,8 +50,6 @@ build_app () {
     else
         echo "[build_app] Image ${image_name} found"
         echo "[build_app] Running image ${image_name}"
-        echo "[build_app] $(pwd)"
-        echo "[build_app] $(pwd | ls)"
         docker run -v "$(pwd):/app" --rm ${image_name}
     fi
     exit 0;
