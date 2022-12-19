@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checks out this branch
         uses: actions/checkout@v3
-      - name: whichdocker
+      - name: which docker
         run: |
           command -v docker
           chmod u+x ./run.sh
