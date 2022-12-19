@@ -11,7 +11,7 @@ USAGE () {
     echo "Please specify argument."
 }
 
-if [ $# == 0 ]
+if [ $# = 0 ]
 then
     USAGE
     exit 1;
@@ -19,11 +19,11 @@ fi
 
 check_docker_exists () {
     echo "[check_docker_exists]"
-    if ! command -v docker &> /dev/null
+    if ! command -v docker > /dev/null 2>&1
     then
         echo "FAIL: Docker could not be found."
         exit 1;
-    elif ! docker stats --no-stream &> /dev/null
+    elif ! docker stats --no-stream > /dev/null 2>&1
     then
         echo "FAIL: Docker daemon/engine is not running."
         exit 1;
@@ -41,9 +41,9 @@ build_app () {
     ymds=$(date +%Y%m%d%s)
     image_name="vms-frontend-build-${commit_hash}-${ymds}"
     echo "[build_app] building container ${image_name}"
-    docker build -f Dockerfile.build -t ${image_name} .
+    docker build -f Dockerfile.build -t "${image_name}" .
 
-    if [[ "$(docker images -q ${image_name} 2> /dev/null)" == "" ]]
+    if [ "$(docker images -q ${image_name} 2> /dev/null)" = "" ]
     then
         echo "FAIL: [development] Image ${image_name} not found"
         exit 1;        
@@ -63,7 +63,8 @@ DEVELOPMENT_ENV_FILE="./container.dev.env"
 load_env_development () {
     echo "[development::load_env_development] from ${DEVELOPMENT_ENV_FILE}"
     set -a # automatically export all variables
-    source "${DEVELOPMENT_ENV_FILE}"
+    # shellcheck source=./container.dev.env
+    . "${DEVELOPMENT_ENV_FILE}"
     set +a
     echo "[development::load_env_development] development port: ${DEVELOPMENT_PORT}"
 
@@ -77,16 +78,16 @@ development () {
     ymds=$(date +%Y%m%d%s)
     image_name="vms-frontend-development-${commit_hash}-${ymds}"
     echo "[development] building container ${image_name}"
-    docker build -f Dockerfile.dev -t ${image_name} .
+    docker build -f Dockerfile.dev -t "${image_name}" .
 
-    if [[ "$(docker images -q ${image_name} 2> /dev/null)" == "" ]]
+    if [ "$(docker images -q ${image_name} 2> /dev/null)" = "" ]
     then
         echo "FAIL: [development] Image ${image_name} not found"
         exit 1;        
     else
         echo "[development] Image ${image_name} found"
         echo "[development] Running image ${image_name}"
-        docker run -it -v "$(pwd):/app" -e DEVELOPMENT_PORT="${DEVELOPMENT_PORT}" --rm -p "${DEVELOPMENT_PORT}":"${DEVELOPMENT_PORT}"/tcp ${image_name}
+        docker run -it -v "$(pwd):/app" -e DEVELOPMENT_PORT="${DEVELOPMENT_PORT}" --rm -p "${DEVELOPMENT_PORT}":"${DEVELOPMENT_PORT}"/tcp "${image_name}"
     fi
     exit 0;
 
