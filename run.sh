@@ -18,6 +18,7 @@ then
 fi
 
 check_docker_exists () {
+    echo "[check_docker_exists]"
     if ! command -v docker &> /dev/null
     then
         echo "FAIL: Docker could not be found."
@@ -70,7 +71,6 @@ load_env_development () {
 }
 
 development () {
-
     echo "[development]"
     load_env_development
     commit_hash=$(git log -1 --format="%H")
