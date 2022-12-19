@@ -20,6 +20,14 @@ Docker + Internet.
 
 `DEVELOPMENT_PORT` ingress port. To keep consistency, this value will be propagated downstream for vite development server
 
+## Github Actions
+
+The yamls run drivers (initial steps) which can be extended for CICD.
+
+build-in-place.yaml spins a container inside runner and execute npm run build
+
+connection-ec2.yaml ssh into remote server and logs current commit hash
+
 ## Build Stage - Local
 
 `./run_dev.sh build` Build to `/dist`.
