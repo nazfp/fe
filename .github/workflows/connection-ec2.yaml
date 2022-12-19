@@ -3,7 +3,7 @@ name: EC2 Connection
 on:
   push:
     branches:
-      - main
+      - deploy
 jobs:
   connection:
     strategy:
